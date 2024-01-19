@@ -1,7 +1,7 @@
 -- this is the first file executed when the application starts
 -- we have to load the first modules form here
 -- set true so that modules are reloaded when modified. (Note: Use only dev mod)
-AUTO_RELOAD_MODULE = true
+AUTO_RELOAD_MODULE = false
 
 -- WALKING SYSTEM
 -- Set true if using Nostalrius 7.2, Nekiro TFS-1.5-Downgrades-7.72
