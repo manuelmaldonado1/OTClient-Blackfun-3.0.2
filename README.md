@@ -44,6 +44,7 @@
 - Refactored Battle Module by [@andersonfaaria](https://github.com/andersonfaaria)
 - Health&Mana Circle by [@EgzoT](https://github.com/EgzoT), [@GustavoBlaze](https://github.com/GustavoBlaze), [@Tekadon58](https://github.com/Tekadon58) ([GITHUB Project](https://github.com/EgzoT/-OTClient-Mod-health_and_mana_circle))
 - Tibia Theme 1.2 by Zews ([Forum Thread](https://otland.net/threads/otc-tibia-theme-v1-2.230988/))
+- StoneDrake UI implemented by [@manuelmaldonado1](https://github.com/manuelmaldonado1) ([Forum Thread](https://otland.net/threads/otclient-mehah-3-0-2-stonedrake-ui.287726/))
 - Add option ADJUST_CREATURE_INFORMATION_BASED_ON_CROP_SIZE in [config.h](https://github.com/mehah/otclient/blob/cache-for-all/src/client/config.h) by [@SkullzOTS](https://github.com/SkullzOTS)
 - Encryption System by [@Mrpox](https://github.com/Mrpox) (Note: This implementation is unsafe)
   - To enable just go to [config.h](https://github.com/mehah/otclient/blob/cache-for-all/src/client/config.h), set 1 in ENABLE_ENCRYPTION and change password on ENCRYPTION_PASSWORD
@@ -54,7 +55,6 @@
 - Discord RPC by [@SkullzOTS](https://github.com/SkullzOTS)
   - To enable just go to [config.h](https://github.com/mehah/otclient/blob/main/src/client/config.h), set 1 in ENABLE_DISCORD_RPC and configure the others definitions
   - You can see the step by step in [YouTube](https://www.youtube.com/watch?v=zCHYtRlD58g)
-  - - StoneDrake UI by [@manuelmaldonado1](https://github.com/manuelmaldonado1) ([Forum Thread](https://otland.net/threads/otclient-mehah-3-0-2-stonedrake-ui.287726/))
   
 ##### [OTClient V8](https://github.com/OTCv8) (Features)
 - Lighting System
