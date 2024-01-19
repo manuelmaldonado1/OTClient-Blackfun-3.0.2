@@ -54,6 +54,7 @@
 - Discord RPC by [@SkullzOTS](https://github.com/SkullzOTS)
   - To enable just go to [config.h](https://github.com/mehah/otclient/blob/main/src/client/config.h), set 1 in ENABLE_DISCORD_RPC and configure the others definitions
   - You can see the step by step in [YouTube](https://www.youtube.com/watch?v=zCHYtRlD58g)
+  - - StoneDrake UI by [@manuelmaldonado1](https://github.com/manuelmaldonado1) ([Forum Thread](https://otland.net/threads/otclient-mehah-3-0-2-stonedrake-ui.287726/))
   
 ##### [OTClient V8](https://github.com/OTCv8) (Features)
 - Lighting System
