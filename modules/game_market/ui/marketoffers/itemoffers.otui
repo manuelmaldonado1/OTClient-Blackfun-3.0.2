@@ -1,0 +1,190 @@
+OfferTableRow < TableRow
+  font: verdana-11px-monochrome
+  color: #cccccc
+  height: 15
+
+OfferTableColumn < TableColumn
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-offset: 5 0
+  color: #cccccc
+  width: 80
+
+OfferTableWarningColumn < OfferTableColumn
+  color: #e03d3d
+
+OfferTableHeaderRow < TableHeaderRow
+  font: verdana-11px-monochrome
+  color: #cccccc
+  height: 20
+
+OfferTableHeaderColumn < SortableTableHeaderColumn
+  font: verdana-11px-monochrome
+  text-offset: 2 0
+  color: #cccccc
+
+  $focus:
+    background-color: #294f6d
+    color: #ffffff
+
+Panel
+  background-color: alpha
+  margin: 1
+
+  Button_bfn
+    id: buyButton
+    !text: tr('Buy Now')
+    anchors.right: parent.right
+    anchors.bottom: next.bottom
+    margin-right: 6
+    width: 75
+    enabled: false
+
+  Label
+    !text: tr('Sell Offers')
+    font: Almendra-Regular-1px_cp1252
+    text-offset: 0 2
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 40
+    margin-left: 6
+
+  Table
+    id: sellingTable
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    anchors.right: parent.right
+    height: 150
+    margin-top: 5
+    margin-bottom: 5
+    margin-right: 6
+    padding: 1
+    focusable: false
+    text-offset: 0 0
+    image-source: /images/blackfun/ui/characterlist
+    image-color: #dfdfdf
+    image-clip: 0 0 98 98
+    table-data: sellingTableData
+    row-style: OfferTableRow
+    column-style: OfferTableColumn
+    header-column-style: false
+    header-row-style: false
+
+    OfferTableHeaderRow
+      id: header
+      height: 30
+      OfferTableHeaderColumn
+        !text: tr('Buyer Name')
+        image-border: 8
+        width: 110
+      OfferTableHeaderColumn
+        !text: tr('Amount')
+        image-border: 8
+        width: 105
+      OfferTableHeaderColumn
+        !text: tr('Total Price')
+        image-border: 8
+        width: 112
+      OfferTableHeaderColumn
+        !text: tr('Piece Price')
+        image-border: 8
+        width: 105
+      OfferTableHeaderColumn
+        image-border: 8
+        !text: tr('Auction End')
+        width: 110
+
+  TableData
+    id: sellingTableData
+    anchors.bottom: sellingTable.bottom
+    anchors.left: sellingTable.left
+    anchors.right: sellingTable.right
+    margin-top: 2
+    vertical-scrollbar: sellingTableScrollBar
+
+  VerticalScrollBar
+    id: sellingTableScrollBar
+    anchors.top: sellingTable.top
+    anchors.bottom: sellingTable.bottom
+    anchors.right: sellingTable.right
+    step: 28
+    pixels-scroll: true
+
+  Button_bfn
+    id: sellButton
+    !text: tr('Sell Now')
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 10
+    margin-right: 6
+    width: 75
+    enabled: false
+
+  Label
+    !text: tr('Buy Offers')
+    font: Almendra-Regular-1px_cp1252
+    text-offset: 0 2
+    anchors.top: prev.top
+    anchors.left: parent.left
+    margin-top: 15
+    margin-left: 6
+
+  Table
+    id: buyingTable
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    anchors.right: parent.right
+    height: 150
+    margin-top: 5
+    margin-bottom: 5
+    margin-right: 6
+    padding: 1
+    focusable: false
+    text-offset: 0 0
+    image-source: /images/blackfun/ui/characterlist
+    image-color: #dfdfdf
+    image-clip: 0 0 98 98
+    table-data: buyingTableData
+    row-style: OfferTableRow
+    column-style: OfferTableColumn
+    header-column-style: false
+    header-row-style: false
+
+    OfferTableHeaderRow
+      id: header
+      height: 30
+      OfferTableHeaderColumn
+        !text: tr('Seller Name')
+        image-border: 8
+        width: 110
+      OfferTableHeaderColumn
+        !text: tr('Amount')
+        image-border: 8
+        width: 105
+      OfferTableHeaderColumn
+        !text: tr('Total Price')
+        image-border: 8        
+        width: 112
+      OfferTableHeaderColumn
+        !text: tr('Piece Price')
+        image-border: 8        
+        width: 105
+      OfferTableHeaderColumn
+        !text: tr('Auction End')
+        image-border: 8
+        width: 110
+
+  TableData
+    id: buyingTableData
+    anchors.bottom: buyingTable.bottom
+    anchors.left: buyingTable.left
+    anchors.right: buyingTable.right
+    vertical-scrollbar: buyingTableScrollBar
+
+  VerticalScrollBar
+    id: buyingTableScrollBar
+    anchors.top: buyingTable.top
+    anchors.bottom: buyingTable.bottom
+    anchors.right: buyingTable.right
+    step: 28
+    pixels-scroll: true

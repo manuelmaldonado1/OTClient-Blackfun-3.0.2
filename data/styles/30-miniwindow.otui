@@ -1,0 +1,106 @@
+MiniWindow < UIMiniWindow
+  font: Aladin-13px_cp1252
+  color: #c7c0b8
+  icon-rect: 25 25 20 20
+  text-offset: 48 28
+  image-border-bottom: 26
+  image-border-top: 52
+  height: 150
+  margin-top: -12
+  padding-top: 23
+  padding-left: 7
+  padding-bottom: 16
+  text-align: topLeft
+  image-source: /images/blackfun/ui/miniwindow
+  focusable: false
+  &minimizedHeight: 67
+
+  UIWidget
+    id: miniwindowTopBar
+    anchors.top: parent.top
+    anchors.right: parent.right
+    anchors.left: parent.left
+    margin-right: 0
+    margin-left: 0
+    margin-top: 0
+    size: 258 18
+    phantom: true
+
+  UIButton
+    id: closeButton
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 4
+    margin-right: 11
+    size: 19 17
+    image-source: /images/blackfun/ui/nav_buttons
+    image-clip: 101 0 23 20
+
+    $hover:
+      image-clip: 101 20 23 20
+
+    $pressed:
+      image-clip: 101 40 23 20
+
+  UIButton
+    id: minimizeButton
+    anchors.top: closeButton.top
+    anchors.right: closeButton.left
+    margin-right: 3
+    size: 19 17
+    image-source: /images/blackfun/ui/nav_buttons
+    image-clip: 26 0 23 20
+
+    $hover:
+      image-clip: 26 20 23 20
+
+    $pressed:
+      image-clip: 26 40 23 20
+
+    $on:
+      image-clip: 26 0 23 20
+
+    $on hover:
+      image-clip: 26 20 23 20
+
+    $on pressed:
+      image-clip: 26 40 23 20
+
+  VerticalScrollBar
+    id: miniwindowScrollBar
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    step: 14
+    margin-top: 30
+    margin-right: 5
+    margin-bottom: 15
+    pixels-scroll: true
+
+    $!on:
+      width: 0
+
+  ResizeBorder
+    id: bottomResizeBorder
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 3
+    minimum: 48
+    margin-left: 3
+    margin-right: 3
+    background: #ffffff88
+
+MiniWindowContents < ScrollablePanel
+  id: contentsPanel
+  anchors.fill: parent
+  anchors.right: miniwindowScrollBar.left
+  margin-left: 3
+  margin-bottom: 1
+  margin-top: 28
+  margin-right: 0
+  vertical-scrollbar: miniwindowScrollBar
+
+BorderlessGameWindow < UIWindow
+  focusable: false
+  margin: 2

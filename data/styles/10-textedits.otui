@@ -1,0 +1,21 @@
+TextEdit < UITextEdit
+  font: Aladin-13px_cp1252
+  color: #d6d0c4
+  size: 194 46
+  text-offset: 0 4
+  text-align: topCenter
+  opacity: 1
+  padding: 15
+  image-source: /images/blackfun/ui/input
+  image-border: 7
+  selection-color: #272727
+  selection-background-color: #cccccc
+  $disabled:
+    color: #27272788
+    opacity: 0.5
+
+PasswordTextEdit < TextEdit
+  text-hidden: true
+
+MultilineTextEdit < TextEdit
+  multiline: true

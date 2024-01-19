@@ -1,0 +1,44 @@
+BotPanel < Panel
+  id: botPanel
+  size: 196 122
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.top: parent.top
+
+  UIWidget
+    id: botIcon
+    size: 16 16
+    icon-source: icon
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 15
+    !tooltip: tr('Disabled')
+
+    $!disabled:
+      icon-color: #ffffff
+      image-color: #ffffffff
+
+    $disabled:
+      icon-color: #888888
+      image-color: #ffffff66
+
+  BotOptionCheckBox
+    id: BotEnabled
+    width: 80
+    !text: tr('Enable Bot')
+    !tooltip: tr('Enable the bot helper.')
+    anchors.left: prev.right
+    anchors.top: parent.top
+    margin-left: 8
+    margin-top: 15
+
+  BotOptionCheckBox
+    id: BotPrecisionMode
+    width: 105
+    !text: tr('Precision Mode')
+    !tooltip: tr('Enable precision mode for more\nprecise information checking.\nExample: Spell checks\n\nNote: Not recommended for servers\nthat have alot of custom features')
+    anchors.right: parent.right
+    anchors.top: parent.top
+    margin-top: 15
+    margin-right: 7
+

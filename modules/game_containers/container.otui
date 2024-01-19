@@ -1,0 +1,94 @@
+PageButton < Button_bfn
+  size: 30 18
+  margin: 1
+
+
+ContainerWindow < MiniWindow
+  height: 250
+  padding-right : 14
+
+  UIItem
+    id: containerItemWidget
+    virtual: true
+    size: 16 16
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 4
+    margin-left: 18
+
+
+  UIButton
+    id: upButton
+    anchors.top: minimizeButton.top
+    anchors.right: minimizeButton.left
+    margin-right: 3
+    size: 19 17
+    image-source: /images/blackfun/ui/nav_buttons
+    image-clip: 125 0 25 20
+
+    $hover:
+      image-clip: 125 20 25 20
+
+    $pressed:
+      image-clip: 125 40 25 20
+
+  Panel
+    id: pagePanel
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: miniwindowTopBar.bottom
+    height: 20
+    margin: 10 30 0 12
+    background: #00000066
+    visible: false
+
+    Label
+      id: pageLabel
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 2
+      margin-right: 2
+      text-auto-resize: true
+
+    PageButton
+      id: prevPageButton
+      text: <
+      anchors.top: parent.top
+      anchors.left: parent.left
+      margin-left: 2
+      margin-top: 0
+      size: 25 20
+      image-source: /images/blackfun/ui/nav_buttons
+      image-clip: 0 0 25 20
+
+      $hover:
+        image-clip: 0 20 25 20
+
+      $pressed:
+        image-clip: 0 40 25 20
+
+    PageButton
+      id: nextPageButton
+      text: >
+      anchors.top: parent.top
+      anchors.right: parent.right
+      margin-right: 2
+      margin-top: 0
+      size: 25 20
+      image-source: /images/blackfun/ui/nav_buttons
+      image-clip: 0 0 25 20
+
+      $hover:
+        image-clip: 0 20 25 20
+
+      $pressed:
+        image-clip: 0 40 25 20
+
+  MiniWindowContents
+    padding-right: -6
+    padding-top: 6
+    padding-left: 8
+    layout:
+      type: grid
+      cell-size: 32 32
+      flow: true

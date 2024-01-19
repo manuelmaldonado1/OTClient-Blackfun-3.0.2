@@ -1,0 +1,154 @@
+IconButton < CheckBox
+  size: 29 29
+  image-source: /images/blackfun/game/viplist/checkbox
+  image-size: 29 29
+  image-border: 0
+  margin: 2
+  icon-source: /images/blackfun/game/viplist/icons
+  icon-size: 12 12
+  icon-rect: 0 0 12 12
+  icon-clip: 0 0 12 12
+  icon-offset: 9 8
+
+  $first:
+    margin-left: 0
+
+  $!checked:
+    image-clip: 0 0 29 29
+
+  $hover !checked:
+    image-clip: 0 0 29 29
+
+  $checked:
+    size: 26 26
+    image-source: /images/blackfun/game/viplist/vipcheckbox
+    image-size: 26 26
+    image-clip: 26 0 26 26
+    image-offset: 1 1
+
+  $hover checked:
+    size: 26 26
+    image-source: /images/blackfun/game/viplist/vipcheckbox
+    image-size: 26 26
+    image-clip: 26 0 26 26
+    image-offset: 1 1
+
+MainWindow
+  size: 290 230
+  !text: tr('Edit VIP list entry')
+
+  Label
+    id: nameLabel
+    text: Name
+    margin-top: 15
+    margin-left: 5
+    anchors.top: parent.top
+    anchors.left: parent.left
+    color: green
+    width: 180
+
+  Label
+    !text: tr('Description') .. ':'
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    margin-left: 5
+    height: 20
+    margin-top: 15
+
+  TextEdit
+    id: descriptionText
+    image-source: /images/blackfun/ui/input
+    image-size: 184 46
+    image-border: 7
+    margin-top: -15
+    padding-left: 10
+    padding-right: 15
+    anchors.top: prev.top
+    anchors.left: prev.right
+    anchors.right: parent.right
+
+  Label
+    !text: tr('Notify-Login') .. ':'
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    text-offset: 0 3
+    height: 20
+    margin-left: 5
+    margin-top: 10
+
+  CheckBox
+    id: checkBoxNotify
+    anchors.top: prev.top
+    anchors.left: prev.right
+    margin: 2 6
+
+  UIWidget
+    layout: horizontalBox
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 24
+
+    IconButton
+      id: icon0
+
+    IconButton
+      id: icon1
+      icon-clip: 12 0 12 12
+
+    IconButton
+      id: icon2
+      icon-clip: 24 0 12 12
+
+    IconButton
+      id: icon3
+      icon-clip: 36 0 12 12
+
+    IconButton
+      id: icon4
+      icon-clip: 48 0 12 12
+
+    IconButton
+      id: icon5
+      icon-clip: 60 0 12 12
+
+    IconButton
+      id: icon6
+      icon-clip: 72 0 12 12
+
+    IconButton
+      id: icon7
+      icon-clip: 84 0 12 12
+
+    IconButton
+      id: icon8
+      icon-clip: 96 0 12 12
+
+    IconButton
+      id: icon9
+      icon-clip: 108 0 12 12
+
+    IconButton
+      id: icon10
+      icon-clip: 120 0 12 12
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  Button_bfn
+    id: buttonOK
+    !text: tr('Ok')
+    width: 75
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+
+  Button_bfn
+    id: buttonCancel
+    !text: tr('Cancel')
+    width: 75
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom

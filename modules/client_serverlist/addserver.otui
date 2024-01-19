@@ -1,0 +1,91 @@
+MainWindow
+  id: addServerWindow
+  !text: tr('New Server')
+  text-offset: 0 20 
+  size: 225 280
+  visible: false
+  @onEscape: AddServer.hide()
+  @onEnter: AddServer.add()
+
+  Label
+    id: hostLabel
+    !text: tr('Host')
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 20
+    text-offset: 80 0
+    margin-bottom: 2
+
+  TextEdit
+    id: host
+    anchors.top: hostLabel.bottom
+    anchors.left: hostLabel.left
+    anchors.right: parent.right
+    padding-right: 20
+    auto-focus: first
+    image-source: /images/blackfun/ui/input
+    image-size: 194 46
+
+  Label
+    id: portLabel
+    !text: tr('Port')
+    anchors.top: host.bottom
+    anchors.left: host.left
+    margin-top: 3
+    text-offset: 80 0
+    margin-bottom: 2
+
+  TextEdit
+    id: port
+    text: 7171
+    anchors.top: portLabel.bottom
+    anchors.left: portLabel.left
+    anchors.right: host.right
+    padding-right: 20
+    image-source: /images/blackfun/ui/input
+    image-size: 194 46
+
+  Label
+    id: protocolLabel
+    !text: tr('Protocol')
+    anchors.top: port.bottom
+    anchors.left: port.left
+    margin-top: 3
+    text-offset: 70 0
+    margin-bottom: 2
+
+  ComboBox
+    id: protocol
+    anchors.top: protocolLabel.bottom
+    anchors.left: protocolLabel.left
+    anchors.right: port.right
+    menu-scroll: true
+    margin-top: 2
+    margin-left: 20
+    margin-right: 20
+    menu-height: 125
+    menu-scroll-step: 25
+    @onSetup: |
+      for _, proto in pairs(g_game.getSupportedClients()) do
+        self:addOption(proto)
+      end
+
+  Button_bfn
+    id: buttonAdd
+    !text: tr('Add')
+    width: 75
+    anchors.right: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    margin-right: 2
+    margin-bottom: 5
+    @onClick: AddServer.add()
+
+  Button_bfn
+    id: buttonCancel
+    !text: tr('Cancel')
+    width: 75
+    anchors.left: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    margin-left: 2
+    margin-bottom: 5
+    @onClick: AddServer.hide()

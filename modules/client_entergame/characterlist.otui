@@ -1,0 +1,146 @@
+CharacterWidget < UIWidget
+  height: 24
+  background-color: alpha
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+
+  $focus:
+    background-color: #ffffff22
+
+  Label
+    id: name
+    color: #aaaaaa
+    anchors.top: parent.top
+    anchors.left: parent.left
+    font: Aladin-13px_cp1252
+    text-auto-resize: true
+    background-color: alpha
+    icon-size: 25 25
+    icon-source: /images/blackfun/ui/blackfun
+    text-offset: 26 4
+
+    $on:
+      color: #b8b693
+
+  Label
+    id: worldName
+    color: #aaaaaa
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-right: 5
+    margin-top: 4
+    font: Aladin-13px_cp1252
+    text-auto-resize: true
+    background-color: alpha
+    &baseText: '(%s)'
+
+    $on:
+      color: #b8b693
+
+MainWindow
+  id: charactersWindow
+  !text: tr('Character List')
+  visible: false
+  @onEnter: CharacterList.doLogin()
+  @onEscape: CharacterList.hide(true)
+  @onSetup: |
+    g_keyboard.bindKeyPress('Up', function() self:getChildById('characters'):focusPreviousChild(KeyboardFocusReason) end, self)
+    g_keyboard.bindKeyPress('Down', function() self:getChildById('characters'):focusNextChild(KeyboardFocusReason) end, self)
+    if g_game.getFeature(GamePreviewState) then
+      self:setSize({width = 350, height = 400})
+    else
+      self:setSize({width = 250, height = 248})
+    end
+
+  TextList
+    id: characters
+    size: 98 98
+    text-offset: 0 0
+    image-source: /images/blackfun/ui/characterlist
+    image-color: #dfdfdf
+    image-clip: 0 0 98 98
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: characterListScrollBar.left
+    anchors.bottom: accountStatusCaption.top
+    margin-bottom: 5
+    margin-top: 10
+    padding: 1
+    focusable: false
+    vertical-scrollbar: characterListScrollBar
+    auto-focus: first
+
+  VerticalScrollBar
+    id: characterListScrollBar
+    anchors.top: parent.top
+    anchors.bottom: accountStatusCaption.top
+    anchors.right: parent.right
+    margin-bottom: 5
+    margin-top: 10
+    step: 14
+    pixels-scroll: true
+
+  Label
+    id: accountStatusCaption
+    !text: tr('Account Status') .. ':'
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-left: 5
+    margin-bottom: 1
+
+  Label
+    id: accountStatusLabel
+    !text: tr('Free Card')
+    color: green
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: separator.top
+    margin-bottom: 5
+    margin-left: 5
+    text-auto-resize: true
+
+    $on:
+      color: #FF0000
+
+  HorizontalSeparator
+    id: separator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  //CheckboxChat
+  //  id: charAutoLoginBox
+  //  !text: tr('Auto login')
+  //  !tooltip: tr('Auto login selected character on next charlist load')
+  //  anchors.left: parent.left
+  //  anchors.right: parent.right
+  //  anchors.bottom: next.top
+  //  text-offset: 30 8
+  //  margin-bottom: 1
+  //  margin-left: 5
+
+  Button_bfn
+    id: buttonOk
+    !text: tr('Ok')
+    width: 75
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: CharacterList.doLogin()
+
+  Button_bfn
+    id: buttonCancel
+    !text: tr('Cancel')
+    width: 75
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: CharacterList.hide(true)

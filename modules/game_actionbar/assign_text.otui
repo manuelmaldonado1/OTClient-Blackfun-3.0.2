@@ -1,0 +1,62 @@
+MainWindow
+  text: Assign Text
+  size: 270 190
+  @onEscape: modules.game_actionbar.closeTextAssignWindow()
+  @onEnter: modules.game_actionbar.textAssignAccept()
+
+  Label
+    id: textLabel
+    margin-top: 15
+    text: Text:
+    text-auto-resize: true
+    height: 20
+    margin-left: 5
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+  TextEdit
+    id: textToSendTextEdit
+    image-source: /images/blackfun/ui/input
+    image-size: 194 46
+    padding-right: 35
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    width: 218
+
+
+  CheckBox
+    margin-top: 5
+    margin-left: 5
+    id: sendAutomaticallyCheckBox
+    text: Send automatically
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    text-auto-resize: true
+    @onSetup: self:setChecked(true)
+
+  HorizontalSeparator
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 2
+    margin-top: 10
+
+  Button_bfn
+    id: applyButton
+    text: Apply
+    height: 30
+    width: 75
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    @onClick: modules.game_actionbar.textAssignAccept()
+
+  Button_bfn
+    id: cancelButton
+    text: Cancel
+    height: 30
+    width: 75
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    @onClick: modules.game_actionbar.closeTextAssignWindow()

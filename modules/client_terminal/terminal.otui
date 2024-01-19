@@ -1,0 +1,120 @@
+TerminalLabel < UILabel
+  font: Almendra-Regular-1px_cp1252
+  text-wrap: true
+  text-auto-resize: true
+  phantom: true
+
+TerminalSelectText < UITextEdit
+  font: Almendra-Regular-1px_cp1252
+  text-wrap: true
+  text-align: bottomLeft
+  editable: false
+  change-cursor-image: false
+  cursor-visible: false
+  selection-color: black
+  selection-background-color: white
+  color: alpha
+  focusable: false
+  auto-scroll: false
+
+UIWindow
+  id: terminalWindow
+  opacity: 1
+  background: black
+  clipping: true
+  margin-top: 50
+  padding: 5
+  anchors.fill: parent
+  border: 0 white
+  $on:
+    border: 1 black
+
+  Label
+    id: titleBar
+    !text: tr('Terminal')
+    border: 1 black
+    color: white
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    background-color: #ffffff11
+    text-align: left
+    text-offset: 4 0
+    height: 18
+    visible: false
+
+  ScrollablePanel
+    id: terminalBuffer
+    focusable: false
+    anchors.left: parent.left
+    anchors.right: terminalScroll.left
+    anchors.top: terminalScroll.top
+    anchors.bottom: commandTextEdit.top
+    layout:
+      type: verticalBox
+      align-bottom: true
+    vertical-scrollbar: terminalScroll
+    inverted-scroll: true
+    margin-left: 5
+
+  TerminalSelectText
+    id: terminalSelectText
+    anchors.fill: terminalBuffer
+    focusable: false
+
+  VerticalScrollBar
+    id: terminalScroll
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    step: 48
+    pixels-scroll: true
+
+
+  UITextEdit
+    id: commandTextEdit
+    image-source: /images/blackfun/ui/input
+    image-width: 200
+    image-height: 35
+    image-border: 7
+    background: #aaaaaa11
+    border-color: #aaaaaa88
+    &baseHeight: 35
+    anchors.bottom: parent.bottom
+    margin-left: 1
+    margin-bottom: 10
+    margin-right: 10
+    padding-top: 10
+    padding-left: 10
+    font: Almendra-Regular-1px_cp1252
+    selection-color: black
+    selection-background-color: white
+    border-width-left: 0
+    border-width-top: 0
+    multiline: false
+
+    $on:
+      border-width-left: 1
+      border-width-top: 1
+      multiline: true
+
+  Panel
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-right: -250
+    image-source: /images/blackfun/ui/terminal
+    image-size: 200 200
+
+  ResizeBorder
+    id: bottomResizeBorder
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    enabled: false
+
+  ResizeBorder
+    id: rightResizeBorder
+    anchors.right: parent.right
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    enabled: false

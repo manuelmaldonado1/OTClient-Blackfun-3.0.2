@@ -1,0 +1,23 @@
+Panel < UIWidget
+  phantom: true
+  auto-focus: first
+
+ScrollablePanel < UIScrollArea
+  phantom: true
+  auto-focus: first
+
+FlatPanel < Panel
+  image-source: /images/blackfun/ui/input
+  image-border: 10
+
+ScrollableFlatPanel < ScrollablePanel
+  image-source: /images/blackfun/ui/input
+  image-border: 10
+  padding-top: 20
+
+ScrollableFlatTradePanel < ScrollablePanel
+  padding-top: 20
+
+LightFlatPanel < Panel
+  image-source: /images/blackfun/ui/panel_lightflat
+  image-border: 4

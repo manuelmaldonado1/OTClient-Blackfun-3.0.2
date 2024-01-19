@@ -1,0 +1,46 @@
+MainWindow
+  size: 256 178
+  !text: tr('Add to VIP list')
+  @onEnter: modules.game_viplist.addVip()
+  @onEscape: modules.game_viplist.destroyAddWindow()
+
+  Label
+    !text: tr('Please enter a character name') .. ':'
+    margin-top: 15
+    margin-left: 20
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+
+  TextEdit
+    id: name
+    image-source: /images/blackfun/ui/input
+    image-size: 194 46
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 4
+    margin-left: 15
+    padding-left: 10
+    padding-right: 25
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  Button_bfn
+    !text: tr('Ok')
+    width: 75
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: modules.game_viplist.addVip()
+
+  Button_bfn
+    !text: tr('Cancel')
+    width: 75
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: modules.game_viplist.destroyAddWindow()

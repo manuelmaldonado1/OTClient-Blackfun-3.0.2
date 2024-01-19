@@ -1,0 +1,153 @@
+SpellProgressRect < UIProgressRect
+  background: #585858AA
+  percent: 100
+  focusable: false
+  size: 44 44
+  phantom: false
+
+ActionSlot < UIActionSlot
+  size: 44 44
+  image-source: /images/blackfun/game/actionbar/slot-actionbar
+  anchors.left: prev.right
+  anchors.top: parent.top
+  margin-left: 3
+  image-size: 44 44
+  visible: false
+  $pressed:
+    opacity: 0.7
+  $!pressed:
+    opacity: 1.0
+  Label
+    id: key
+    anchors.top: parent.top
+    anchors.right: parent.right
+    text-auto-resize: true
+    margin-right: 2
+    margin-top: -1
+    font: verdana-10px
+  Label
+    id: text
+    anchors.fill: parent
+    text-auto-resize: true
+    text-wrap: true
+    text-align: center
+    margin-left: 1
+    margin-right: 1
+    margin-top: 6
+    font: verdana-10px
+
+UIWindow
+  visible: true
+  height: 55
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  image-source: /images/blackfun/ui/panel_lightflat
+  image-border: 12
+  padding: 5
+  text-align: center
+  //background-color: gray
+  auto-focus: first
+  draggable: false
+  phantom: false
+  focusable: false
+
+  Button_bfn
+    id: prevButton
+    image-source: /images/blackfun/game/console/sound_control_button
+    icon: /images/blackfun/game/actionbar/icon-arrow
+    image-border: 0
+    anchors.left: parent.left
+    anchors.top: parent.top
+    size: 26 25
+    margin-left: 35
+    margin-top: 10
+    @onClick: |
+      modules.game_actionbar.actionBar:getChildById('horizontalScroll'):decrement(36)
+  
+    $hover !disabled:
+      image-clip: 0 24 26 25
+
+    $pressed:
+      image-clip: 0 48 26 25
+
+  Button_bfn
+    id: prevSkipButton
+    image-source: /images/blackfun/game/console/sound_control_button
+    icon: /images/blackfun/game/actionbar/icon-arrowskip
+    image-border: 0
+    anchors.left: parent.left
+    anchors.top: prevButton.top
+    size: 26 25
+    margin-left: 2
+    margin-top: 0
+    @onClick: |
+      modules.game_actionbar.actionBar:getChildById('horizontalScroll'):decrement(999)
+  
+    $hover !disabled:
+      image-clip: 0 24 26 25
+
+    $pressed:
+      image-clip: 0 48 26 25
+
+  ScrollablePanel
+    id: actionBarPanel
+    anchors.top: parent.top
+    anchors.left: prevButton.right
+    anchors.right: nextButton.left
+    //anchors.left: parent.left
+    //anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    horizontal-scrollbar: horizontalScroll
+    inverted-scroll: false
+    margin-left: 1
+    margin-right: 4
+    margin-top: 1
+    height: 40
+
+  HorizontalScrollBar
+    id: horizontalScroll
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    step: 38
+    pixels-scroll: true
+    visible: false
+
+  Button_bfn
+    id: nextButton
+    image-source: /images/blackfun/game/console/sound_control_button
+    icon: /images/blackfun/game/actionbar/icon-arrow-right
+    image-border: 0
+    anchors.right: parent.right
+    anchors.top: parent.top
+    size: 26 25
+    margin-right: 35
+    margin-top: 10
+    @onClick: |
+      modules.game_actionbar.actionBar:getChildById('horizontalScroll'):increment(36)
+            
+    $hover !disabled:
+      image-clip: 0 24 26 25
+
+    $pressed:
+      image-clip: 0 48 26 25
+
+  Button_bfn
+    id: nextSkipButton
+    image-source: /images/blackfun/game/console/sound_control_button
+    icon: /images/blackfun/game/actionbar/icon-arrowskip-right
+    image-border: 0
+    anchors.right: parent.right
+    anchors.top: nextButton.top
+    size: 26 25
+    margin-right: 5
+    margin-top: 0
+    @onClick: |
+      modules.game_actionbar.actionBar:getChildById('horizontalScroll'):increment(999)
+                
+    $hover !disabled:
+      image-clip: 0 24 26 25
+
+    $pressed:
+      image-clip: 0 48 26 25

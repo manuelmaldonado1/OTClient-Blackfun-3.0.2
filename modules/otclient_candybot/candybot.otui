@@ -1,0 +1,310 @@
+BotOptionLineEdit < TextEdit
+  @onTextChange: CandyBot.changeOption(self:getId(), self:getText())
+
+BotOptionCheckBox < CheckBox
+  @onCheckChange: CandyBot.changeOption(self:getId(), self:isChecked())
+
+BotOptionTextList < TextList
+  @onChildFocusChange: |
+    local focusedChild = self:getFocusedChild()
+    if focusedChild then
+      CandyBot.changeOption(self:getId(), focusedChild:getText())
+    end
+
+BotOptionHorizontalScrollBar < HorizontalScrollBar
+  @onValueChange: CandyBot.changeOption(self:getId(), self:getValue())
+
+BotOptionVerticalScrollBar < VerticalScrollBar
+  @onValueChange: CandyBot.changeOption(self:getId(), self:getValue())
+
+BotOptionComboBoxPopupMenuButton < ComboBoxPopupMenuButton
+BotOptionComboBoxPopupMenu < ComboBoxPopupMenu
+BotOptionComboBoxPopupScrollMenu < ComboBoxPopupScrollMenu
+BotOptionComboBoxPopupScrollMenuButton < ComboBoxPopupScrollMenuButton
+BotOptionComboBox < ComboBox
+  @onOptionChange: CandyBot.changeOption(self:getId(), self:getCurrentOption().text)
+
+ListRowComplex < UIWidget
+  height: 14
+  background-color: alpha
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+
+  $focus:
+    background-color: #ffffff22
+
+  Label
+    id: details
+    color: #aaaaaa
+    anchors.top: parent.top
+    anchors.left: parent.left
+    font: verdana-11px-monochrome
+    text-auto-resize: true
+    background-color: alpha
+    text-offset: 2 2
+
+    $on:
+      color: #ffffff
+
+  Button
+    id: remove
+    text: x
+    width: 12
+    height: 12
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-right: 4
+    margin-top: 1
+
+
+LootListRow < UIWidget
+  height: 36
+  background-color: alpha
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+
+  $focus:
+    background-color: #ffffff22
+
+  Label
+    id: details
+    color: #aaaaaa
+    anchors.top: parent.top
+    anchors.left: parent.left
+    font: verdana-11px-monochrome
+    text-auto-resize: true
+    background-color: alpha
+    text-offset: 2 2
+
+    $on:
+      color: #ffffff
+
+  Button
+    id: remove
+    text: x
+    width: 14
+    height: 13
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-right: 4
+    margin-top: 4
+    text-offset: 1 -2
+
+  Button
+    id: ignore
+    width: 14
+    height: 13
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    margin-right: 4
+    margin-bottom: 4
+    text-offset: 0 -1
+
+  Item
+    id: item
+    size: 36 36
+    offset: 2 2
+    margin-top: 2
+    margin-left: 2
+    focusable: false
+    virtual: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+LogLabel < UILabel
+  font: verdana-11px-antialised
+  height: 14
+  color: white
+  margin-left: 2
+  text-wrap: true
+  text-auto-resize: true
+
+BotTabBar < MoveableTabBar
+BotTabBarPanel < MoveableTabBarPanel
+
+  ScrollablePanel
+    id: tabBuffer
+    vertical-scrollbar: tabScrollBar
+    anchors.fill: parent
+    padding: 1
+    margin-right: 12
+
+  VerticalScrollBar
+    id: tabScrollBar
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    padding-top: -6
+    padding-bottom: -6
+    step: 45
+    pixels-scroll: true
+
+BotTabBarButton < MoveableTabBarButton
+  height: 25
+  padding: 18
+
+PathMap < UIPathMap
+  draggable: true
+  focusable: false
+  cross: true
+  color: black
+
+  MinimapFloorUpButton
+    id: floorUp
+    @onClick: self:getParent():floorUp(1)
+
+  MinimapFloorDownButton
+    id: floorDown
+    @onClick: self:getParent():floorDown(1)
+
+  MinimapZoomInButton
+    id: zoomIn
+    @onClick: self:getParent():zoomIn()
+
+  MinimapZoomOutButton
+    id: zoomOut
+    @onClick: self:getParent():zoomOut()
+
+  MinimapResetButton
+    id: reset
+    @onClick: self:getParent():reset()
+
+MainWindow
+  id: botWindow
+  !text: tr('CandyBot')
+  size: 422 605
+  @onEscape: CandyBot.hide()
+
+  &save: true
+
+  BotTabBar
+    id: botTabBar
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 45
+    margin-left: 0
+
+  Panel
+    id: botContent
+    anchors.top: botTabBar.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 330
+    image-source: /images/blackfun/ui/characterlist
+    image-color: #ffffff99
+    padding-left: 9
+    padding-top: 6
+    padding-bottom: 6
+    margin-top: 5
+    margin-bottom: 7
+    margin-left: 0
+
+  Panel
+    anchors.left: botContent.left
+    anchors.right: botContent.right
+    anchors.top: botContent.bottom
+    anchors.bottom: hideButton.top
+    margin-top: 5
+    margin-bottom: 5
+
+    Window
+      id: logWindow
+      clipping: true
+      anchors.fill: parent
+      dragable: false
+      padding-top: 15
+      padding-left: 15
+      padding-right: 14
+      padding-bottom: 15
+
+      ScrollablePanel
+        id: logBuffer
+        anchors.left: parent.left
+        anchors.right: logScrollBar.left
+        anchors.top: logScrollBar.top
+        anchors.bottom: parent.bottom
+        layout:
+          type: verticalBox
+          align-bottom: true
+        focusable: false
+        vertical-scrollbar: logScrollBar
+        inverted-scroll: true
+        image-source: /images/blackfun/ui/characterlist
+        opacity: 0.85
+
+      VerticalScrollBar
+        id: logScrollBar
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        step: 15
+        pixels-scroll: true
+
+    ResizeBorder
+      id: bottomResizeBorder
+      anchors.bottom: parent.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      enabled: true
+
+  Button_bfn
+    id: hideButton
+    !text: tr('Hide')
+    width: 75
+    height: 30
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-right: 0
+    margin-bottom: 0
+    @onClick: CandyBot.hide()
+
+  BotOptionComboBox
+    id: LoggerType
+    !tooltip: tr('Log level determining what log messages will be shown. This will show messages')
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-bottom: 0
+    margin-left: 0
+    options:
+      -Info
+      -Warning
+      -Error
+      -Debug
+    @onOptionChange: |
+      local option = self:getCurrentOption()
+      if option.text == "Info" then
+        BotLogger.logType = BotLogTypes.info
+      elseif option.text == "Warning" then
+        BotLogger.logType = BotLogTypes.warning
+      elseif option.text == "Error" then
+        BotLogger.logType = BotLogTypes.error
+      elseif option.text == "Debug" then
+        BotLogger.logType = BotLogTypes.debug
+      end
+      CandyBot.changeOption(self:getId(), self:getCurrentOption().text)
+
+  BotOptionCheckBox
+    id: PrintLogs
+    width: 80
+    !text: tr('Print Logs')
+    !tooltip: tr('Also print the logs to the terminal.')
+    anchors.left: LoggerType.right
+    anchors.bottom: parent.bottom
+    margin-bottom: 0
+    margin-left: 5
+    checked: false

@@ -1,0 +1,251 @@
+HotkeyListLabel < UILabel
+  font: Aladin-13px_cp1252
+  background-color: alpha
+  height: 24
+  text-offset: 5 4
+  focusable: true
+  phantom: false
+
+  $focus:
+    background-color: #ffffff22
+
+MainWindow
+  id: hotkeysWindow
+  !text: tr('Hotkeys')
+  size: 340 550
+
+  @onEnter: modules.game_hotkeys.ok()
+  @onEscape: modules.game_hotkeys.cancel()
+
+  VerticalScrollBar
+    id: currentHotkeysScrollBar
+    height: 150
+    anchors.top: parent.top
+    anchors.right: parent.right
+    step: 14
+    pixels-scroll: true
+    margin-top: 10
+
+  TextList
+    id: currentHotkeys
+    size: 98 98
+    text-offset: 0 0
+    image-source: /images/blackfun/ui/characterlist
+    image-color: #dfdfdf
+    image-clip: 0 0 98 98
+    vertical-scrollbar: currentHotkeysScrollBar
+    anchors.left: parent.left
+    anchors.right: prev.left
+    anchors.top: prev.top
+    anchors.bottom: prev.bottom
+    focusable: false
+
+  TabButton_bfn
+    id: resetButton
+    width: 96
+    !text: tr('Reset All')
+    anchors.left: parent.left
+    anchors.top: next.top
+    @onClick: modules.game_hotkeys.reset()
+    margin-right: 10
+
+  Button_bfn
+    id: addHotkeyButton
+    !text: tr('Add')
+    width: 75
+    anchors.right: next.left
+    anchors.top: next.top
+    margin-right: 5
+    @onClick: modules.game_hotkeys.addHotkey()
+
+  Button_bfn
+    id: removeHotkeyButton
+    !text: tr('Remove')
+    width: 75
+    enabled: false
+    anchors.right: parent.right
+    anchors.top: currentHotkeys.bottom
+    margin-top: 8
+    @onClick: modules.game_hotkeys.removeHotkey()
+
+  Label
+    id: hotKeyActionLabel
+    !text: tr('Hotkey Action') .. ':'
+    enable: false
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 10
+
+  ComboBox
+    id: hotkeyActionCombo
+    enabled: false
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 2
+    image-border-left: 5
+    image-border-right: 33
+    mouse-scroll: false
+
+  Label
+    id: hotKeyTextLabel
+    !text: tr('Edit hotkey text') .. ':'
+    enable: false
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 10
+
+  TextEdit
+    id: hotkeyText
+    enabled: false
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 2
+    padding-right: 10
+    @onTextChange: modules.game_hotkeys.onHotkeyTextChange(self:getText())
+
+  CheckBox
+    id: sendAutomatically
+    !text: tr('Send automatically')
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    enabled:false
+    margin-top: 5
+    @onCheckChange: modules.game_hotkeys.onSendAutomaticallyChange(self:isChecked())
+
+  Item
+    id: itemPreview
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 10
+    margin-left: 5
+    virtual: true
+
+  TabButton_bfn
+    id: selectObjectButton
+    !text: tr('Select object')
+    width: 100
+    enabled: false
+    anchors.left: prev.right
+    anchors.top: prev.top
+    margin-left: 10
+    @onClick: modules.game_hotkeys.startChooseItem()
+
+  TabButton_bfn
+    id: clearObjectButton
+    !text: tr('Clear object')
+    width: 100
+    enabled: false
+    anchors.left: prev.left
+    anchors.right: prev.right
+    anchors.top: prev.bottom
+    margin-top: 2
+    @onClick: modules.game_hotkeys.clearObject()
+
+  TabButton_bfn
+    id: useOnSelf
+    !text: tr('Use on yourself')
+    width: 128
+    enabled: false
+    anchors.left: selectObjectButton.right
+    anchors.right: parent.right
+    anchors.top: selectObjectButton.top
+    checked: false
+    margin-left: 10
+
+  TabButton_bfn
+    id: useOnTarget
+    !text: tr('Use on target')
+    width: 128
+    enabled: false
+    anchors.left: prev.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    checked: false
+    margin-top: 2
+
+  TabButton_bfn
+    id: useWith
+    !text: tr('With crosshair')
+    width: 128
+    enabled: false
+    anchors.left: prev.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    checked: false
+    margin-top: 2
+
+  HorizontalSeparator
+    id: separator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  Button_bfn
+    id: okButton
+    !text: tr('Ok')
+    width: 75
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    @onClick: modules.game_hotkeys.ok()
+    margin-right: 10
+
+  Button_bfn
+    id: cancelButton
+    !text: tr('Cancel')
+    width: 75
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: modules.game_hotkeys.cancel()
+
+HotkeyAssignWindow < MainWindow
+  id: assignWindow
+  !text: tr('Button Assign')
+  size: 360 150
+  @onEscape: self:destroy()
+
+  Label
+    !text: tr('Press the key you wish to add onto your hotkeys manager')
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: parent.top
+    text-auto-resize: true
+    margin-top: 10
+    text-align: left
+
+  Label
+    id: comboPreview
+    !text: tr('Current hotkey to add: %s', 'none')
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: prev.bottom
+    margin-top: 10
+    text-auto-resize: true
+
+  HorizontalSeparator
+    id: separator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  Button_bfn
+    id: addButton
+    !text: tr('Add')
+    width: 75
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: modules.game_hotkeys.hotkeyCaptureOk(self:getParent(), self:getParent():getChildById('comboPreview').keyCombo)
+
+  Button_bfn
+    id: cancelButton
+    !text: tr('Cancel')
+    width: 75
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: self:getParent():destroy()

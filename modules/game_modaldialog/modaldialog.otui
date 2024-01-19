@@ -1,0 +1,82 @@
+ChoiceListLabel < Label
+  font: Aladin-13px_cp1252
+  background-color: alpha
+  text-offset: 25 5
+  focusable: true
+  height: 25
+  icon-size: 25 25
+  icon-source: /images/blackfun/ui/blackfun
+
+  $focus:
+    background-color: #00000055
+    color: #ffffff
+
+ChoiceList < TextList
+  id: choiceList
+  size: 98 98
+  text-offset: 0 0
+  image-source: /images/blackfun/ui/characterlist
+  image-color: #dfdfdf
+  image-clip: 0 0 98 98
+  vertical-scrollbar: choiceScrollBar
+  anchors.fill: parent
+  anchors.top: prev.bottom
+  anchors.bottom: next.top
+  margin-top: 4
+  margin-bottom: 10
+  focusable: false
+  visible: false
+
+ChoiceScrollBar < VerticalScrollBar
+  id: choiceScrollBar
+  anchors.top: choiceList.top
+  anchors.bottom: choiceList.bottom
+  anchors.right: choiceList.right
+  step: 14
+  pixels-scroll: true
+  visible: false
+
+ModalButton < Button_bfn
+  text-auto-resize: false
+  margin-top: 2
+  margin-bottom: 2
+  margin-left: 2
+
+  $pressed:
+    text-offset: 0 0
+
+ModalDialog < MainWindow
+  id: modalDialog
+  size: 500 97
+  &minimumWidth: 200
+  &maximumWidth: 600
+  &minimumChoices: 4
+  &maximumChoices: 10
+
+  Label
+    id: messageLabel
+    anchors.top: parent.top
+    anchors.left: parent.left
+    text-align: left
+    text-auto-resize: true
+    margin-top: 15
+    margin-left: 5
+    text-wrap: true
+
+  ChoiceList
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+
+  Panel
+    id: buttonsPanel
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    height: 32
+    layout: horizontalBox
+      align-right: true
+
+  ChoiceScrollBar

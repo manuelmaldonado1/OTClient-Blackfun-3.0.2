@@ -1,0 +1,23 @@
+MarketComboBoxPopupMenuButton < ComboBoxRoundedPopupMenuButton
+  height: 25
+  font: verdana-11px-rounded
+  text-offset: 5 2
+
+  $hover !disabled:
+    color: #dfdfdf
+    background-color: #63544a
+
+MarketComboBoxPopupMenuSeparator < UIWidget
+  image-source: /images/combobox_rounded
+  image-repeated: true
+  image-clip: 1 59 89 1
+  height: 1
+  phantom: true
+
+MarketComboBoxPopupMenu < ComboBoxRoundedPopupMenu
+  image-border-right: 2
+
+MarketComboBox < ComboBoxRounded
+  font: verdana-11px-rounded
+  size: 86 20
+  text-offset: 3 2

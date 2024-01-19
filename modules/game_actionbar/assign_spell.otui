@@ -1,0 +1,136 @@
+PreviewSpell < UIItem
+  size: 40 40
+  background-color: gray
+  image-clip: 0 0 32 32
+  margin-top: 20
+  margin-left: 5
+  image-size: 40 40
+  image-source: /images/game/spells/defaultspells
+
+Spell < UIItem
+  size: 32 32
+  background-color: gray
+
+SpellListLabel < Label
+  font: Almendra-Regular-1px_cp1252
+  background-color: alpha
+  text-offset: 42 3
+  focusable: true
+  height: 36
+  image-clip: 0 0 32 32
+  image-size: 32 32
+  image-offset: 2 2
+  image-source: /images/game/spells/defaultspells
+  
+  $focus:
+    background-color: #585858
+    color: #ffffff
+
+MainWindow
+  text: Assign Spell
+  size: 280 480
+  @onEscape: modules.game_actionbar.closeSpellAssignWindow()
+  @onEnter: modules.game_actionbar.spellAssignAccept()
+  PreviewSpell
+    id: previewSpell
+    anchors.left: parent.left
+    anchors.top: parent.top
+  Label
+    id: previewSpellName
+    anchors.left: previewSpell.right
+    anchors.top: parent.top
+    margin-top: 20
+    margin-left: 5
+    text: name
+    text-auto-resize: true
+  Label
+    id: previewSpellWords
+    anchors.left: previewSpell.right
+    anchors.top: previewSpellName.bottom
+    text: words
+    margin-left: 5
+    text-auto-resize: true
+  HorizontalSeparator
+    id: splitter
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: previewSpell.bottom
+    margin-top: 10
+    height: 2
+
+  Label
+    id: filterLabel
+    text: Filter
+    anchors.left: parent.left
+    anchors.top: splitter.bottom
+    margin-top: 22
+    margin-left: 5
+  TextEdit
+    id: filterTextEdit
+    image-source: /images/blackfun/ui/input
+    image-size: 194 46
+    padding-right: 35
+    anchors.top: splitter.bottom
+    anchors.right: parent.right
+    anchors.left: prev.right
+    margin-left: 5
+    margin-top: 5
+    @onTextChange: modules.game_actionbar.filterSpells(self:getText())
+
+  TextList
+    id: spellsPanel
+    size: 98 98
+    text-offset: 0 0
+    image-source: /images/blackfun/ui/characterlist
+    image-color: #dfdfdf
+    image-clip: 0 0 98 98
+    layout:
+      type: verticalBox
+    vertical-scrollbar: spellsPanelScrollbar
+    anchors.top: filterTextEdit.bottom
+    anchors.bottom: parameterTextEdit.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+    margin-bottom: 5
+
+  VerticalScrollBar
+    id: spellsPanelScrollbar
+    anchors.top: spellsPanel.top
+    anchors.bottom: parameterTextEdit.top
+    anchors.right: parent.right
+    step: 48
+    pixels-scroll: true
+    margin-bottom: 5
+
+  Label
+    id: parameterLabel
+    text: Parameter
+    anchors.left: parent.left
+    anchors.bottom: applyButton.top
+    margin-bottom: 22
+    margin-left: 5
+  TextEdit
+    id: parameterTextEdit
+    image-source: /images/blackfun/ui/input
+    image-size: 164 46
+    image-border: 7
+    padding-right: 35
+    anchors.bottom: applyButton.top
+    anchors.right: parent.right
+    anchors.left: prev.right
+    margin-left: 5
+    margin-bottom: 5
+
+  Button_bfn
+    id: applyButton
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    text: Apply
+    @onClick: modules.game_actionbar.spellAssignAccept()
+  Button_bfn
+    id: cancelButton
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    text: Cancel
+    @onClick: modules.game_actionbar.closeSpellAssignWindow()

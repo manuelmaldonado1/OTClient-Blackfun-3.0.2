@@ -1,0 +1,29 @@
+Window < UIWindow
+  font: Aladin-13px_cp1252
+  size: 200 200
+  opacity: 1
+  color: #c7c0b8
+  text-offset: 0 22
+  text-align: top
+  image-source: /images/blackfun/ui/window
+  image-border: 14
+  image-border-top: 57
+  padding-top: 36
+  padding-left: 16
+  padding-right: 16
+  padding-bottom: 16
+  text-only-upper-case: true
+
+  $disabled:
+    color: #dfdfdf88
+
+  $dragging:
+    opacity: 0.8
+
+HeadlessWindow < UIWindow
+  image-source: /images/blackfun/ui/window_headless
+  image-border: 15
+  padding: 5
+
+MainWindow < Window
+  anchors.centerIn: parent

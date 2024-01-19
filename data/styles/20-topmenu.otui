@@ -1,0 +1,50 @@
+TopButton < UIButton
+  size: 50 30
+  image-source: /images/blackfun/ui/button
+  image-clip: 0 0 75 30
+  image-border: 6
+
+  $hover !disabled:
+    image-color: #ffffff99
+    image-clip: 0 30 75 30
+
+  $pressed:
+    image-clip: 0 60 75 30
+
+TopToggleButton < UIButton
+  size: 50 30
+  image-border: 6
+  image-source: /images//blackfun/ui/button
+  image-clip: 0 0 75 30
+  image-color: #ffffffff
+
+  $on:
+    image-clip: 0 60 75 30
+    image-color: #ffffffff
+    icon-color: #ffffffff
+
+
+TopMenuButtonsPanel < Panel
+  layout:
+    type: horizontalBox
+    spacing: 4
+    fit-children: true
+  padding: 10 20
+
+TopMenuPanel < Panel
+  height: 50
+  image-source: /images/blackfun/ui/panel_top
+  image-repeated: true
+  focusable: false
+  image-border-bottom: 10
+  image-border-left: 12
+  image-border-right: 12
+
+TopMenuFrameCounterLabel < Label
+  font: verdana-11px-rounded
+  color: red
+  margin-top: 10
+  margin-left: 5
+
+TopMenuPingLabel < Label
+  font: verdana-11px-rounded

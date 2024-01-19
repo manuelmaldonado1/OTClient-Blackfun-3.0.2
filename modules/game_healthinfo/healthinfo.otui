@@ -1,0 +1,104 @@
+HealthBar < ProgressBar
+  id: healthBar
+  background-color: #ff4444
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 2
+  margin-left: 13
+  margin-right: 5
+
+ManaBar < ProgressBar
+  id: manaBar
+  background-color: #4444ff
+  anchors.top: prev.bottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 4
+  margin-left: 13
+  margin-right: 5
+
+ExperienceBar < ProgressBar
+  id: experienceBar
+  background-color: #B6E866
+  anchors.top: prev.bottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 4
+  margin-left: 13
+  margin-right: 5
+
+SoulLabel < GameLabel
+  id: soulLabel
+  text-align: center
+  color: white
+  image-source: /images/blackfun/ui/input
+  height: 32
+  anchors.top: prev.bottom
+  anchors.right: parent.right
+  anchors.left: parent.horizontalCenter
+  margin-top: 3
+  margin-right: 4
+  on: true
+
+  $!on:
+    visible: false
+    margin-top: 0
+    height: 0
+
+CapLabel < GameLabel
+  id: capLabel
+  color: white
+  image-source: /images/blackfun/ui/input
+  height: 32
+  font: verdana-11px-rounded
+  anchors.top: prev.top
+  anchors.left: parent.left
+  anchors.right: parent.horizontalCenter
+  margin-left: 11
+  text-offset: 15 9
+  on: true
+
+  $!on:
+    visible: false
+    margin-top: 0
+    height: 0
+
+ConditionWidget < UIWidget
+  size: 18 18
+
+  $!first:
+    margin-left: 4
+
+MiniWindow
+  id: healthInfoWindow
+  !text: tr('Health Info')
+  height: 190
+  padding-right: 14
+  icon: /images/blackfun/ui/blackfun
+  @onClose: modules.game_healthinfo.onMiniWindowClose()
+  &save: true
+
+  MiniWindowContents
+    HealthBar
+    ManaBar
+    ExperienceBar
+    SoulLabel
+    CapLabel
+    Panel
+      id: conditionPanel
+      layout:
+        type: horizontalBox
+      height: 25
+      margin-left: 13
+      margin-right: 5
+      margin-top: 1
+      padding-top: 4
+      padding-bottom: 4
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      border-width: 1
+      border-color: #00000077
+      background-color: #ffffff11
+

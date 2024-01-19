@@ -1,0 +1,78 @@
+ChannelListLabel < Label
+  font: Aladin-13px_cp1252
+  background-color: alpha
+  height: 24
+  text-offset: 27 4
+  icon-size: 25 25
+  icon-source: /images/blackfun/ui/blackfun
+  focusable: true
+
+  $focus:
+    background-color: #ffffff22
+    color: #ffffff
+
+MainWindow
+  id: channelsWindow
+  !text: tr('Channels')
+  text-offset: 0 20
+  size: 250 338
+  @onEscape: self:destroy()
+
+  TextList
+    id: channelList
+    size: 98 98
+    text-offset: 0 0
+    margin-top: 10
+    image-source: /images/blackfun/ui/characterlist
+    image-clip: 0 0 98 98
+    vertical-scrollbar: channelsScrollBar
+    anchors.fill: parent
+    anchors.bottom: next.top
+    margin-bottom: 10
+    padding: 1
+    focusable: false
+
+  Label
+    id: openPrivateChannelWithLabel
+    !text: tr('Open a private message channel') .. ':'
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    text-align: center
+    margin-bottom: 2
+
+  TextEdit
+    id: openPrivateChannelWith
+    image-source: /images/blackfun/ui/input
+    image-size: 194 46
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+    margin-left: 12
+    padding-right: 30
+
+  Button_bfn
+    id: buttonOpen
+    !text: tr('Open')
+    width: 75
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 10
+    @onClick: self:getParent():onEnter()
+
+  Button_bfn
+    id: buttonCancel
+    !text: tr('Cancel')
+    width: 75
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: self:getParent():destroy()
+
+  VerticalScrollBar
+    id: channelsScrollBar
+    anchors.top: channelList.top
+    anchors.bottom: channelList.bottom
+    anchors.right: channelList.right
+    step: 14
+    pixels-scroll: true

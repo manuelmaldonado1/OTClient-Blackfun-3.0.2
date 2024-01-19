@@ -1,0 +1,23 @@
+Label < UILabel
+  font: Almendra-Regular-1px_cp1252
+  color: #c7c0b8
+
+  $disabled:
+    color: #dfdfdf88
+
+FlatLabel < UILabel
+  font: verdana-11px-antialised
+  color: #dfdfdf
+  size: 86 20
+  text-offset: 3 3
+  image-source: /images/blackfun/ui/panel_flat
+  image-border: 1
+
+  $disabled:
+    color: #dfdfdf88
+
+MenuLabel < Label
+
+GameLabel < UILabel
+  font: verdana-11px-antialised
+  color: #dfdfdf

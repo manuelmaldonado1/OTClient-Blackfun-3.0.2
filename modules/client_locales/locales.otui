@@ -1,0 +1,35 @@
+LocalesMainLabel < Label
+  font: Aladin-13px_cp1252
+
+LocalesButton < UIWidget
+  size: 96 96
+  image-size: 96 96
+  image-smooth: true
+  text-offset: 0 40
+  font: Aladin-13px_cp1252
+
+UIWindow
+  id: localesWindow
+  background-color: black
+  opacity: 1
+  clipping: true
+  anchors.fill: parent
+
+  LocalesMainLabel
+    !text: tr('Select your language')
+    text-auto-resize: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    margin-top: -100
+
+  Panel
+    id: localesPanel
+    margin-top: 20
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: prev.bottom
+    anchors.bottom: parent.bottom
+    layout:
+      type: grid
+      cell-size: 96 100
+      cell-spacing: 16
+      flow: true

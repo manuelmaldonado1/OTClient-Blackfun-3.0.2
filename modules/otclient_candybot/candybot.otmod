@@ -1,0 +1,14 @@
+Module
+  name: otclient_candybot
+  description: Bot Addon
+  author: Ben Dol (benis), Alexandre Severino (kilouco)
+  website: https://github.com/BeniS/otclient-candybot
+  version: 1.0
+
+  autoload: true
+  autoload-priority: 1000
+  sandbox: true
+  scripts: [ candybot ]
+
+  @onLoad: init()
+  @onUnload: terminate()

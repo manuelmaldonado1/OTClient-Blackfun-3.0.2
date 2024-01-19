@@ -1,0 +1,54 @@
+CountWindow < MainWindow
+  id: countWindow
+  !text: tr('Move Stackable Item')
+  size: 196 130
+
+  SpinBox
+    id: spinBox
+    anchors.left: parent.left
+    anchors.top: parent.top
+    width: 1
+    height: 1
+    phantom: true
+    margin-top: 25
+    margin-left: 15
+    focusable: true
+
+  Item
+    id: item
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 15
+    margin-left: 5
+    focusable: false
+    virtual: true
+
+  HorizontalScrollBar
+    id: countScrollBar
+    anchors.left: prev.right
+    anchors.right: parent.right
+    anchors.top: prev.top
+    margin-left: 10
+    margin-top: 5
+    focusable: false
+
+  Button_bfn
+    id: buttonCancel
+    !text: tr('Cancel')
+    height: 30
+    anchors.left: countScrollBar.horizontalCenter
+    anchors.right: countScrollBar.right
+    anchors.top: countScrollBar.bottom
+    margin-top: 7
+    focusable: false
+
+  Button_bfn
+    id: buttonOk
+    !text: tr('Ok')
+    height: 30
+    anchors.right: countScrollBar.horizontalCenter
+    anchors.left: countScrollBar.left
+    anchors.top: countScrollBar.bottom
+    margin-top: 7
+    margin-right: 6
+    focusable: false

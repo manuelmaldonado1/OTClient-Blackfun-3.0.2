@@ -1,0 +1,10 @@
+Item < UIItem
+  size: 36 36
+  padding: 1
+  image-source: /images/blackfun/ui/item
+  font: verdana-11px-rounded
+  border-color: white
+  color: white
+
+  $disabled:
+    color: #646464

@@ -1,0 +1,9 @@
+Creature < UICreature
+  size: 80 80
+  image-source: /images/blackfun/ui/input
+  image-border: 7
+  border-width: 1
+  border-color: alpha
+
+  $checked:
+    border-color: white

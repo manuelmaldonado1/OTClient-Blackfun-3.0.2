@@ -1,0 +1,166 @@
+InventoryItem < Item
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+HeadSlot < InventoryItem
+  id: slot1
+  image-source: /images/blackfun/ui/slot
+  !tooltip: tr('Head')
+  &position: {x=65535, y=1, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+BodySlot < InventoryItem
+  id: slot4
+  image-source: /images/blackfun/ui/slot
+  !tooltip: tr('Body')
+  &position: {x=65535, y=4, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+LegSlot < InventoryItem
+  id: slot7
+  !tooltip: tr('Legs')
+  image-source: /images/blackfun/ui/slot
+  &position: {x=65535, y=7, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+FeetSlot < InventoryItem
+  id: slot8
+  !tooltip: tr('Feet')
+  image-source: /images/blackfun/ui/slot
+  &position: {x=65535, y=8, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+NeckSlot < InventoryItem
+  id: slot2
+  !tooltip: tr('Neck')
+  image-source: /images/blackfun/ui/slot
+  &position: {x=65535, y=2, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+LeftSlot < InventoryItem
+  id: slot6
+  !tooltip: tr('Left Hand')
+  image-source: /images/blackfun/ui/slot
+  &position: {x=65535, y=6, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+FingerSlot < InventoryItem
+  id: slot9
+  !tooltip: tr('Finger')
+  image-source: /images/blackfun/ui/slot
+  &position: {x=65535, y=9, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+BackSlot < InventoryItem
+  id: slot3
+  !tooltip: tr('Back')
+  image-source: /images/blackfun/ui/slot
+  &position: {x=65535, y=3, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+RightSlot < InventoryItem
+  id: slot5
+  !tooltip: tr('Right Hand')
+  image-source: /images/blackfun/ui/slot
+  &position: {x=65535, y=5, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+AmmoSlot < InventoryItem
+  id: slot10
+  !tooltip: tr('Ammunition')
+  image-source: /images/blackfun/ui/slot
+  &position: {x=65535, y=10, z=0}
+  $on:
+    image-source: /images/blackfun/ui/item-blessed
+
+PurseButton < Button_bfn
+  id: purseButton
+  size: 25 25
+  !tooltip: tr('Open Shop')
+  icon-source: /images/blackfun/ui/logout
+  icon-clip: 0 0 43 43
+  icon-size: 25 25
+
+  $hover !disabled:
+    icon-clip: 0 43 43 43
+
+  $pressed:
+    icon-clip: 0 86 43 43
+
+MiniWindow
+  id: inventoryWindow
+  !text: tr('Inventory')
+  height: 235
+  padding-right: 14
+  icon: /images/blackfun/ui/blackfun
+  @onClose: modules.game_inventory.onMiniWindowClose()
+  &save: true
+
+  MiniWindowContents
+    HeadSlot
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 5
+      margin-right: 5
+
+    BodySlot
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 3
+
+    LegSlot
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 3
+
+    FeetSlot
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 3
+
+    NeckSlot
+      anchors.top: slot1.top
+      anchors.right: slot1.left
+      margin-top: 10
+      margin-right: 5
+
+    LeftSlot
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 3
+
+    FingerSlot
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 3
+
+    BackSlot
+      anchors.top: slot1.top
+      anchors.left: slot1.right
+      margin-top: 10
+      margin-left: 5
+
+    RightSlot
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 3
+
+    AmmoSlot
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: prev.horizontalCenter
+      margin-top: 3
+
+    PurseButton
+      margin-top: 3
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: prev.horizontalCenter
+    

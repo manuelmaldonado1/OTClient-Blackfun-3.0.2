@@ -1,0 +1,27 @@
+VipListLabel < GameLabel
+  margin-top: 2
+  text-offset: 16 0
+  image-rect: 0 0 12 12
+  image-clip: 0 0 12 12
+  image-source: /images/blackfun/game/viplist/icons
+  phantom: false
+
+  $first:
+    margin-top: 0
+
+MiniWindow
+  id: vipWindow
+  !text: tr('VIP List')
+  padding-right: 14
+  icon: /images/blackfun/ui/blackfun
+  @onOpen: modules.game_viplist.onMiniWindowOpen()
+  @onClose: modules.game_viplist.onMiniWindowClose()
+  &save: true
+
+  MiniWindowContents
+    layout: verticalBox
+    font: NewRocker-Regular-1px_cp1252
+    color: #c7c0b8
+    padding-left: 13
+    &onMousePress: modules.game_viplist.onVipListMousePress
+

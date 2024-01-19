@@ -1,0 +1,16 @@
+MessageBoxLabel < Label
+  id: messageBoxLabel
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.top: parent.top
+  text-wrap: true
+  margin-top: 20
+  text-auto-resize: true
+
+MessageBoxButtonHolder < UIWidget
+  id: buttonHolder
+  margin-top: 30
+  anchors.bottom: parent.bottom
+
+MessageBoxButton < Button_bfn
+  margin-left: 10
+  width: 75

@@ -1,0 +1,72 @@
+MarketTabBar < TabBar
+  margin-top: 10
+MarketTabBarPanel < TabBarPanel
+MarketTabBarButton < TabBarButton
+  size: 126 29
+  image-source: /images/blackfun/ui/inactive_chat_tab
+  image-color: #dfdfdf
+  image-clip: 0 0 0 0
+  image-border: 10
+  image-border-bottom: 0
+  icon-color: #dfdfdf
+  color: #dfdfdf
+  anchors.top: parent.top
+  anchors.left: parent.left
+  padding: 5
+
+  $!first:
+    anchors.left: prev.right
+    margin-left: 0
+
+  $hover !checked:
+    image-clip: 0 0 0 0
+    color: #dfdfdf
+
+  $disabled:
+    image-color: #dfdfdf88
+    icon-color: #dfdfdf
+
+  $checked:
+    image-source: /images/blackfun/ui/active_chat_tab
+    image-clip: 0 0 0 0
+    color: #dfdfdf
+
+  $on !checked:
+    color: #de6f6f
+
+MarketRightTabBar < TabBar
+  margin-top: 10
+MarketRightTabBarPanel < TabBarPanel
+MarketRightTabBarButton < TabBarButton
+  size: 126 29
+  image-source: /images/blackfun/ui/inactive_chat_tab
+  image-color: #dfdfdf
+  image-clip: 0 0 0 0
+  image-border: 10
+  image-border-bottom: 0
+  icon-color: #dfdfdf
+  color: #dfdfdf
+  anchors.top: parent.top
+  anchors.left: parent.left
+  padding: 5
+  margin-top: 0
+
+  $!first:
+    anchors.left: prev.right
+    margin-left: 0
+
+  $hover !checked:
+    image-clip: 0 0 0 0
+    color: #dfdfdf
+
+  $disabled:
+    image-color: #dfdfdf88
+    icon-color: #dfdfdf
+
+  $checked:
+    image-source: /images/blackfun/ui/active_chat_tab
+    image-clip: 0 0 0 0
+    color: #dfdfdf
+
+  $on !checked:
+    color: #de6f6f

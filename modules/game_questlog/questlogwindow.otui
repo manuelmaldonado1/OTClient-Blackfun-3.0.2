@@ -1,0 +1,62 @@
+QuestLabel < Label
+  font: Aladin-13px_cp1252
+  background-color: alpha
+  height: 24
+  text-offset: 27 4
+  icon-size: 25 25
+  icon-source: /images/blackfun/ui/blackfun
+  focusable: true
+  color: #aaaaaa
+
+  $on:
+    color: #00aa00
+  $!on:
+    color: #aaaaaa
+
+  $focus:
+    background-color: #444444
+
+  $on focus:
+    color: #00ff00
+  $!on focus:
+    color: #ffffff
+
+QuestLogWindow < MainWindow
+  id: questLogWindow
+  !text: tr('Quest Log')
+  size: 500 400
+  @onEscape: self:destroy()
+
+  TextList
+    id: questList
+    size: 98 98
+    text-offset: 0 0
+    image-source: /images/blackfun/ui/characterlist
+    image-color: #dfdfdf
+    image-clip: 0 0 98 98
+    anchors.top: parent.top
+    anchors.bottom: closeButton.top
+    anchors.left: parent.left
+    anchors.right: questListScrollBar.left
+    margin-bottom: 10
+    margin-top: 10
+    focusable: false
+    vertical-scrollbar: questListScrollBar
+
+  VerticalScrollBar
+    id: questListScrollBar
+    anchors.top: parent.top
+    anchors.bottom: closeButton.top
+    anchors.right: parent.right
+    margin-bottom: 10
+    margin-top: 10
+    step: 14
+    pixels-scroll: true
+
+  Button_bfn
+    id: closeButton
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    !text: tr('Close')
+    width: 75
+    @onClick: self:getParent():destroy()

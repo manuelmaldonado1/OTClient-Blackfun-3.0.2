@@ -1,0 +1,247 @@
+Panel
+  id: afkPanel
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.top: parent.top
+  padding-right: 8
+  height: 430
+
+  BotOptionCheckBox
+    id: CreatureAlert
+    width: 220
+    !text: tr('Alert Creature Appearance')
+    !tooltip: tr('Play a sound alert when a creature appears.')
+    anchors.left: parent.left
+    anchors.top: parent.top
+
+  Button
+    id: CreatureAlertList
+    width: 120
+    !text: tr('Creature List')
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-top: 10
+    @onClick: AfkModule.toggleAlertList()
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 8
+
+  BotOptionCheckBox
+    id: AutoEat
+    !text: tr('Eat Food')
+    !tooltip: tr('Eat food automatically from open bags or inventory.')
+    anchors.left: CreatureAlert.left
+    anchors.top: prev.bottom
+    width: 180
+    margin-top: 10
+
+  BotOptionComboBox
+    id: AutoEatSelect
+    anchors.right: parent.right
+    anchors.top: AutoEat.top
+    font: verdana-11px-antialised
+    color: #dfdfdf
+    size: 179 25
+    text-offset: 3 0
+    text-align: left
+    image-source: /images/blackfun/ui/dropdown_menu
+    image-border-right: 30
+    image-clip: 0 0 179 25
+
+    $hover !disabled:
+      image-clip: 0 25 179 25
+
+    $on:
+      image-clip: 0 50 179 25
+
+    $disabled:
+      color: #dfdfdf88
+      opacity: 0.8
+    options:
+      - Any
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 8
+
+  BotOptionCheckBox
+    id: AutoFishing
+    width: 95
+    !text: tr('Auto Fishing')
+    !tooltip: tr('Player will be fishing as long as there are worms.')
+    anchors.left: prev.left
+    anchors.top: prev.top
+    margin-top: 10
+
+  BotOptionCheckBox
+    id: AutoFishingCheckCap
+    width: 80
+    !text: tr('Check Cap')
+    !tooltip: tr('Check that you have enough capacity to hold fish.')
+    anchors.left: AutoEatSelect.left
+    anchors.top: prev.top
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 8
+  
+  BotOptionCheckBox
+    id: RuneMake
+    !text: tr('Rune Maker')
+    !tooltip: tr('Automatically make runes.')
+    anchors.left: parent.left
+    anchors.top: prev.top
+    width: 180
+    margin-top: 10
+
+  Label
+    id: RuneSpellLabel
+    width: 100
+    !text: tr('Rune Spell Text')
+    anchors.right: parent.right
+    anchors.top: prev.top
+
+  BotOptionLineEdit
+    id: RuneSpellText
+    anchors.left: RuneSpellLabel.left
+    anchors.right: RuneSpellLabel.right
+    anchors.top: RuneSpellLabel.bottom
+    height: 35
+    padding-top: 9
+    padding-bottom: 0
+    margin-right: 10
+    margin-top: 2
+
+  BotOptionCheckBox
+    id: RuneMakeOpenContainer
+    !text: tr('Check Open Containers')
+    !tooltip: tr('Check if there is a blank rune in an open container\nin order to avoid saying the spell words repetitively\nwithout the magic item. (Will always check on Cipsoft Tibia)')
+    anchors.left: parent.left
+    anchors.top: prev.top
+    width: 180
+    margin-top: 5
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 12
+
+  BotOptionCheckBox
+    id: AutoReplaceWeapon
+    !text: tr('Auto Replace Weapons')
+    !tooltip: tr('Automatically "refill" used throwing weapons\n(container of replacing items must be open).')
+    anchors.left: parent.left
+    anchors.top: prev.top
+    margin-top: 10
+    width: 160
+
+  BotOptionComboBox
+    id: AutoReplaceWeaponSelect
+    anchors.right: parent.right
+    anchors.top: prev.top
+    width: 100
+    mouse-scroll: false
+    options:
+      - Left Hand
+      - Right Hand
+
+  Item
+    id: ItemToReplace
+    anchors.left: AutoReplaceWeapon.left
+    anchors.top: AutoReplaceWeapon.bottom
+    margin-top: 5
+    virtual: true
+
+  Button_bfn
+    id: SelectReplaceItem
+    !text: tr('Select Item')
+    width: 75
+    height: 35
+    anchors.left: prev.right
+    anchors.top: prev.top
+    margin-left: 10
+    @onClick: Helper.startChooseItem(AfkModule.onChooseReplaceItem)
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 8
+
+  BotOptionCheckBox
+    id: MagicTrain
+    !text: tr('Magic Training')
+    !tooltip: tr('Trains magic level (use a spell whenever possible).')
+    anchors.left: parent.left
+    anchors.top: prev.top
+    width: 120
+    margin-top: 10
+
+  BotOptionLineEdit
+    id: MagicTrainSpellText
+    anchors.left: MagicTrain.left
+    anchors.right: MagicTrain.right
+    anchors.top: MagicTrain.bottom
+    margin-top: 4
+    height: 35
+    padding-bottom: 0
+    padding-top: 9
+
+  Label
+    id: MagicTrainSpell
+    width: 130
+    !text: tr('Mana Required:')
+    anchors.right: parent.right
+    anchors.top: MagicTrain.top
+
+  BotOptionHorizontalScrollBar
+    id: MagicTrainManaRequired
+    width: 120
+    anchors.left: MagicTrainSpell.left
+    anchors.top: MagicTrainSpell.bottom
+    margin-top: 15
+    margin-left: -15
+    mouse-scroll: false
+    show-value: true
+    symbol: %
+    minimum: 1
+    maximum: 100
+
+  HorizontalSeparator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 14
+
+  BotOptionCheckBox
+    id: AntiKick
+    !text: tr('Anti-kick')
+    !tooltip: tr('Character "dances" to avoid being kicked for being idle for too long.')
+    anchors.left: prev.left
+    anchors.top: prev.bottom
+    width: 180
+    margin-top: 10
+
+  BotOptionCheckBox
+    id: AutoGold
+    !text: tr('Change Gold')
+    !tooltip: tr('Changes 100 gold coins to platinum coin, etc.')
+    anchors.right: parent.right
+    anchors.top: prev.top
+    width: 180
+
+  BotOptionCheckBox
+    id: AutoStack
+    !text: tr('Auto stack items')
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    width: 180
+    margin-top: 5

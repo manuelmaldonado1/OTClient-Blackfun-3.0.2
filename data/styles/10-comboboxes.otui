@@ -1,0 +1,102 @@
+ComboBoxPopupScrollMenuButton < UIButton
+  height: 25
+  font: verdana-11px-antialised
+  text-align: left
+  text-offset: 4 0
+  color: #dfdfdf
+  background-color: alpha
+  margin: 1
+
+  $hover !disabled:
+    color: #dfdfdf
+    background-color: #355d89
+
+  $disabled:
+    color: #dfdfdf88
+
+ComboBoxPopupScrollMenu < UIPopupScrollMenu
+  image-source: /images//blackfun/ui/dropdown_menu
+  image-clip: 0 75 179 25
+  image-border: 1
+
+ComboBoxPopupMenuButton < UIButton
+  height: 25
+  font: verdana-11px-antialised
+  text-align: left
+  text-offset: 4 0
+  color: #dfdfdf
+  background-color: alpha
+
+  $hover !disabled:
+    color: #dfdfdf
+    background-color: #63544a
+
+  $disabled:
+    color: #dfdfdf88
+
+ComboBoxPopupMenu < UIPopupMenu
+  image-source: /images/blackfun/ui/dropdown_menu
+  image-clip: 0 75 179 25
+  image-border-right: 7
+  image-border-left: 7
+
+ComboBox < UIComboBox
+  font: verdana-11px-antialised
+  color: #dfdfdf
+  size: 179 25
+  text-offset: 3 0
+  text-align: left
+  image-source: /images/blackfun/ui/dropdown_menu
+  image-border-right: 30
+  image-clip: 0 0 179 25
+
+  $hover !disabled:
+    image-clip: 0 25 179 25
+
+  $on:
+    image-clip: 0 50 179 25
+
+  $disabled:
+    color: #dfdfdf88
+    opacity: 0.8
+
+ComboBoxRoundedPopupScrollMenuButton < UIButton
+  height: 25
+  font: verdana-11px-antialised
+  text-align: left
+  text-offset: 4 0
+  color: #dfdfdf
+  background-color: alpha
+
+  $hover !disabled:
+    color: #ffffff
+    background-color: #355d89
+
+  $disabled:
+    color: #dfdfdf88
+
+ComboBoxRoundedPopupScrollMenu < UIPopupScrollMenu
+  image-source: /images/blackfun/ui/dropdown_menu
+  image-clip: 0 55 179 25
+
+ComboBoxRoundedPopupMenuButton < UIButton
+  height: 25
+  font: Aladin-13px_cp1252
+  text-align: left
+  text-offset: 4 0
+  color: #dfdfdf
+  background-color: alpha
+
+  $hover !disabled:
+    color: #ffffff
+    background-color: #355d89
+
+  $disabled:
+    color: #dfdfdf88
+
+ComboBoxRoundedPopupMenu < UIPopupMenu
+  image-source: /images/blackfun/ui/dropdown_menu
+  image-clip: 0 75 179 25
+
+ComboBoxRounded < ComboBox
+  image-source: /images/blackfun/ui/dropdown_menu

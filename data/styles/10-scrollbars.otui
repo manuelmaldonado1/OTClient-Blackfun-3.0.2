@@ -1,0 +1,117 @@
+ScrollBarSlider < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  size: 17 38
+  image-source: /images/blackfun/ui/scrollbars/slider_vertical
+  image-clip: 0 0 0 0
+  $hover:
+    image-clip: 0 0 0 0
+  $pressed:
+    image-clip: 0 0 0 0
+  $disabled:
+    image-color: #ffffff66
+
+ScrollBarSliderHorizontal < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  size: 38 17
+  image-source: /images/blackfun/ui/scrollbars/slider_horizontal
+  image-clip: 0 0 0 0
+  $hover:
+    image-clip: 0 0 0 0
+  $pressed:
+    image-clip: 0 0 0 0
+  $disabled:
+    image-color: #ffffff66
+
+ScrollBarValueLabel < Label
+  id: valueLabel
+  anchors.fill: parent
+  color: white
+  text-align: center
+
+VerticalScrollBar < UIScrollBar
+  orientation: vertical
+  width: 21
+  height: 181
+  image-source: /images/blackfun/ui/scrollbars/scrollbar_vertical
+  pixels-scroll: true
+
+  UIButton
+    id: decrementButton
+    anchors.top: parent.top
+    anchors.left: parent.left
+    image-source: /images/blackfun/ui/scrollbars/scrollbar_buttons_vertical
+    image-clip: 0 0 20 21
+    image-color: #ffffffff
+    size: 20 21
+    $hover:
+      image-clip: 0 20 20 21
+    $pressed:
+      image-clip: 0 40 20 21
+    $disabled:
+      image-color: #ffffff66
+
+  UIButton
+    id: incrementButton
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    margin-right: 1
+    size: 20 21
+    image-source: /images/blackfun/ui/scrollbars/scrollbar_buttons_vertical
+    image-clip: 21 0 20 21
+    image-color: #ffffffff
+    $hover:
+      image-clip: 21 20 20 21
+    $pressed:
+      image-clip: 21 40 20 21
+    $disabled:
+      image-color: #ffffff66
+
+  ScrollBarSlider
+
+  ScrollBarValueLabel
+
+HorizontalScrollBar < UIScrollBar
+  orientation: horizontal
+  height: 21
+  width: 181
+  image-source: /images/blackfun/ui/scrollbars/scrollbar_horizontal
+  image-clip: 0 0 0 0
+
+  $disabled:
+    color: #bbbbbb88
+
+  UIButton
+    id: decrementButton
+    anchors.top: parent.top
+    anchors.left: parent.left
+    image-source: /images/blackfun/ui/scrollbars/scrollbar_buttons_horizontal
+    image-clip: 0 0 20 21
+    image-color: #ffffffff
+    size: 20 21
+    $hover:
+      image-clip: 0 21 20 21
+    $pressed:
+      image-clip: 0 42 20 21
+    $disabled:
+      image-color: #ffffff66
+
+  UIButton
+    id: incrementButton
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    size: 20 21
+    image-source: /images/blackfun/ui/scrollbars/scrollbar_buttons_horizontal
+    image-clip: 20 0 20 21
+    image-color: #ffffffff
+    $hover:
+      image-clip: 20 21 20 21
+    $pressed:
+      image-clip: 20 42 20 21
+    $disabled:
+      image-color: #ffffff66
+
+  ScrollBarSliderHorizontal
+
+  ScrollBarValueLabel

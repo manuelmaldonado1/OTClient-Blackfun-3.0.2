@@ -1,0 +1,50 @@
+OptionCheckBox < CheckBox
+  @onCheckChange: modules.client_options.setOption(self:getId(), self:isChecked())
+  height: 16
+
+  $first:
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: parent.top
+
+  $!first:
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 2
+
+OptionScrollbar < HorizontalScrollBar
+  step: 1
+  @onValueChange: modules.client_options.setOption(self:getId(), self:getValue())
+
+MainWindow
+  id: optionsWindow
+  !text: tr('Options')
+  text-offset: 0 20
+  size: 480 600
+
+  @onEnter: modules.client_options.hide()
+  @onEscape: modules.client_options.hide()
+
+  TabBarVertical
+    id: optionsTabBar
+    margin-top: 10
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+
+  Panel
+    id: optionsTabContent
+    anchors.top: optionsTabBar.top
+    anchors.left: optionsTabBar.right
+    anchors.right: parent.right
+    anchors.bottom: optionsTabBar.bottom
+    margin-left: 10
+    margin-top: 10
+
+  Button_bfn
+    !text: tr('Ok')
+    width: 75
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    @onClick: modules.client_options.hide()
